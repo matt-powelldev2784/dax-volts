@@ -29,7 +29,7 @@ export const QuoteMenu = ({ flexDirection }: QuoteMenuProps) => {
       <div className={`flexCol gap-4  ${flexDirection}`}>
         <Button
           type="button"
-          optionalClasses="text-white text-lg bg-mvOrange h-[155px] w-[300px] flex gap-2"
+          optionalClasses="text-white text-lg bg-mvOrange h-[145px] w-[300px] flex gap-2"
           buttonText="Create Quote"
           disabled={false}
           onClick={() => {
