@@ -153,7 +153,7 @@ export const PdfLayout = ({ currentQuote }: PdfQuoteLayoutProps) => {
               </View>
 
               <View style={styles.logoSection}>
-                <Text>Quote Number: {currentQuote.quoteNum}</Text>
+                <Text>Quote Number: DV/0{currentQuote.quoteNum}</Text>
                 <Text>Date: {formatDate(currentQuote.quoteDate)}</Text>
               </View>
             </View>
