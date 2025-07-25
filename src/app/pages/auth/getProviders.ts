@@ -2,7 +2,6 @@ import { getProviders } from 'next-auth/react'
 
 export const getAuthProviders = async () => {
   const providers = await getProviders()
-  console.log('providers', providers)
 
   if (!providers) return null
 
