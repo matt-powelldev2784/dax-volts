@@ -18,9 +18,13 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     EmailProvider({
-      server: process.env.EMAIL_SERVER,
-      from: process.env.EMAIL_FROM,
-      maxAge: 1 * 60 * 60, // 1 hour
+      server: {
+        host: 'smtp.sendgrid.net',
+        port: 587,
+        secure: false,
+        auth: { user: 'apikey', pass: process.env.SENDGRID_API_KEY! },
+      },
+      from: process.env.EMAIL_FROM!,
     }),
   ],
   callbacks: {
