@@ -2,7 +2,6 @@ import NextAuth from 'next-auth'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { prisma } from '../../../../../prisma/db/client'
 import GoogleProvider from 'next-auth/providers/google'
-import EmailProvider from 'next-auth/providers/email'
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
@@ -16,15 +15,6 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-    EmailProvider({
-      server: {
-        host: 'smtp.sendgrid.net',
-        port: 587,
-        secure: false,
-        auth: { user: 'apikey', pass: process.env.SENDGRID_API_KEY! },
-      },
-      from: process.env.EMAIL_FROM!,
     }),
   ],
   callbacks: {
