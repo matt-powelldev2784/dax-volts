@@ -1,17 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {
-  prisma,
-  authOptions,
-  noSessionResponse,
-  badRequestError400,
-} from '@/app/lib'
-import { getServerSession } from 'next-auth'
+import { prisma, badRequestError400 } from '@/app/lib'
 import { T_Client } from '@/types'
 
-export const PUT = async (req: NextRequest, _res: NextResponse) => {
-  const session = await getServerSession(authOptions)
-  if (!session) return noSessionResponse
-
+export const PUT = async (req: NextRequest) => {
   const data: T_Client = await req.json()
   const { id, name } = data
 

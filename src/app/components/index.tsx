@@ -1,5 +1,4 @@
 // common
-export { IsLoggedIn } from './IsLoggedIn/IsLoggedIn'
 export { NavBar } from './navbar/NavBar'
 
 //quote
@@ -29,7 +28,4 @@ export { ProductMenu } from './menuButtons/ProductMenu'
 export { QuoteMenu } from './menuButtons/QuoteMenu'
 
 //auth
-export { SignIn } from './auth/SignIn'
-export { SignOut } from './auth/SignOut'
-export { CheckEmail } from './auth/checkEmail/CheckEmail'
 export { NotAuth } from './auth/notAuth/NotAuth'

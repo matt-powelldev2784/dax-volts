@@ -1,21 +1,16 @@
 import { EditProduct, NavBar } from '@/app/components'
 import { getProduct } from '../getProduct'
 import { ServerError } from '@/app/lib/ServerError'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { redirect } from 'next/navigation'
 
 export default async function AddProductPage({
   params,
 }: {
-  params: { productId: string }
+  params: Promise<{ productId: string[] }>
 }) {
-  const session = await getServerSession(authOptions)
-  if (!session) return redirect('/api/auth/signin')
-   if (!session.user.isAdmin) return redirect('/pages/auth/not-authorised')
+  const { productId } = await params
+  const id = Array.isArray(productId) ? productId[0] : productId
 
-  const productId = params.productId[0]
-  const product = await getProduct(productId)
+  const product = await getProduct(id)
 
   if (!product) {
     return <ServerError />

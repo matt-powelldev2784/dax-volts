@@ -1,13 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma, authOptions, noSessionResponse } from '@/app/lib'
-import { getServerSession } from 'next-auth'
+import { prisma } from '@/app/lib'
+
 import { badRequestError400 } from '@/app/lib'
 import { T_QuoteRow } from '@/types'
 
-export const POST = async (req: NextRequest, _res: NextResponse) => {
-  const session = await getServerSession(authOptions)
-  if (!session) return noSessionResponse
-
+export const POST = async (req: NextRequest) => {
   const { quoteId } = await req.json()
 
   if (!quoteId) return badRequestError400

@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {
-  prisma,
-  authOptions,
-  noSessionResponse,
-  badRequestError400,
-} from '@/app/lib'
-import { getServerSession } from 'next-auth'
+import { prisma, badRequestError400 } from '@/app/lib'
+
 import { T_Product } from '@/types'
 
-export const GET = async (req: NextRequest, _res: NextResponse) => {
-  const session = await getServerSession(authOptions)
-  if (!session) return noSessionResponse
-
+export const GET = async (req: NextRequest) => {
   const url = new URL(req.url)
   const productId = url.searchParams.get('product_id')
 
@@ -28,10 +20,7 @@ export const GET = async (req: NextRequest, _res: NextResponse) => {
   return NextResponse.json(product, { status: 200 })
 }
 
-export const PUT = async (req: NextRequest, _res: NextResponse) => {
-  const session = await getServerSession(authOptions)
-  if (!session) return noSessionResponse
-
+export const PUT = async (req: NextRequest) => {
   const data: T_Product = await req.json()
   const { id, name, description, buyPrice, sellPrice, VAT } = data
 

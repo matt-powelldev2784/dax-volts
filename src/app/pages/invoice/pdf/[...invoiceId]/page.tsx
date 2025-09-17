@@ -1,25 +1,18 @@
-import React from 'react'
 import ViewPDF from '@/app/components/invoice/components/pdf/PdfView'
 import { NavBar } from '@/app/components'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import { redirect } from 'next/navigation'
 
 export default async function InvoicePdfPage({
   params,
 }: {
-  params: { invoiceId: string }
+  params: Promise<{ invoiceId: string[] }>
 }) {
-  const session = await getServerSession(authOptions)
-  if (!session) return redirect('/api/auth/signin')
-   if (!session.user.isAdmin) return redirect('/pages/auth/not-authorised')
-
-  const invoiceId = params.invoiceId[0]
+  const { invoiceId } = await params
+  const id = Array.isArray(invoiceId) ? invoiceId[0] : invoiceId
 
   return (
     <>
       <NavBar />
-      <ViewPDF invoiceId={invoiceId} />
+      <ViewPDF invoiceId={id} />
     </>
   )
 }
