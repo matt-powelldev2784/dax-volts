@@ -3,20 +3,18 @@ import { getTenInvoices } from '../getTenInvoices'
 import { getMaxInvoicePages } from '../getMaxInvoicePages'
 import { ServerError } from '@/app/lib/ServerError'
 
-
-
 export default async function InvoiceListPage({
   params,
 }: {
-  params: { pageNum: string }
+  params: Promise<{ pageNum: string[] }>
 }) {
+  const { pageNum } = await params
+  const page = Number(Array.isArray(pageNum) ? pageNum[0] : pageNum) || 1
+
   const maxInvoicePages = await getMaxInvoicePages()
-  const page = Number(params.pageNum[0])
   const invoices = await getTenInvoices(page)
 
-  if (!invoices) {
-    return <ServerError />
-  }
+  if (!invoices) return <ServerError />
 
   return (
     <main className="min-h-screen min-w-screen">

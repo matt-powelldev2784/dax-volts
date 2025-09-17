@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma, badRequestError400 } from '@/app/lib'
 
-export const PUT = async (req: NextRequest, _res: NextResponse) => {
+export const PUT = async (req: NextRequest) => {
   const url = new URL(req.url)
   const id = url.searchParams.get('client_id')
 

@@ -4,7 +4,7 @@ import { prisma } from '@/app/lib'
 import { badRequestError400 } from '@/app/lib'
 import { T_QuoteRow } from '@/types'
 
-export const POST = async (req: NextRequest, _res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   const { quoteId } = await req.json()
 
   if (!quoteId) return badRequestError400

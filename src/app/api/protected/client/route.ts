@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma, badRequestError400 } from '@/app/lib'
 import { T_Client } from '../../../../types/client'
 
-export const GET = async (_req: NextRequest, _res: NextResponse) => {
+export const GET = async () => {
   const clients = await prisma.client.findMany({
     where: { isHidden: false },
     orderBy: { name: 'asc' },
@@ -10,7 +10,7 @@ export const GET = async (_req: NextRequest, _res: NextResponse) => {
   return NextResponse.json(clients, { status: 200 })
 }
 
-export const POST = async (req: NextRequest, _res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   const data: T_Client = await req.json()
   const { name } = data
 

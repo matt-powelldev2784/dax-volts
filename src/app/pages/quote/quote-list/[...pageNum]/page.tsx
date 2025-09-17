@@ -6,10 +6,12 @@ import { ServerError } from '@/app/lib/ServerError'
 export default async function QuoteListPage({
   params,
 }: {
-  params: { pageNum: string }
+  params: Promise<{ pageNum: string[] }>
 }) {
+  const { pageNum } = await params
+  const page = Number(Array.isArray(pageNum) ? pageNum[0] : pageNum) || 1
+
   const maxQuotePages = await getMaxQuotePages()
-  const page = Number(params.pageNum[0])
   const quotes = await getTenQuotes(page)
 
   if (!quotes) {

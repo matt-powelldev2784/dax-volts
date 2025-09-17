@@ -5,7 +5,7 @@ import { badRequestError400 } from '@/app/lib'
 import { T_QuoteRow } from '@/types'
 import { serverError500 } from '@/app/lib/apiErrors/serverError'
 
-export const POST = async (req: NextRequest, _res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   const data = await req.json()
   console.log('data', data)
 

@@ -2,15 +2,15 @@ import { ProductList, NavBar } from '@/app/components'
 import { getTenProducts } from '../getTenProducts'
 import { getMaxProductPage } from '../getMaxProductPage'
 
-
-
 export default async function ProductListPage({
   params,
 }: {
-  params: { pageNum: string }
+  params: Promise<{ pageNum: string[] }>
 }) {
+  const { pageNum } = await params
+  const page = Number(Array.isArray(pageNum) ? pageNum[0] : pageNum) || 1
+
   const maxProductPage = await getMaxProductPage()
-  const page = Number(params.pageNum[0])
   const products = await getTenProducts(page)
 
   return (

@@ -4,7 +4,7 @@ import { prisma } from '@/app/lib'
 import { badRequestError400 } from '@/app/lib'
 import { T_Product } from '@/types'
 
-export const GET = async (_req: NextRequest, _res: NextResponse) => {
+export const GET = async () => {
   const products = await prisma.product.findMany({
     where: { isHidden: false },
     orderBy: { name: 'asc' },
@@ -12,7 +12,7 @@ export const GET = async (_req: NextRequest, _res: NextResponse) => {
   return NextResponse.json(products, { status: 200 })
 }
 
-export const POST = async (req: NextRequest, _res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   const data: T_Product = await req.json()
   const { name, description, buyPrice, sellPrice, VAT } = data
 

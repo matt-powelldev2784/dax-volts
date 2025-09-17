@@ -1,20 +1,18 @@
-import React from 'react'
-import ViewPDF from '@/app/components/quote/components/pdf/PdfView' // Make sure you have a similar component for quotes
+import ViewPDF from '@/app/components/quote/components/pdf/PdfView'
 import { NavBar } from '@/app/components'
-
-
 
 export default async function QuotePdfPage({
   params,
 }: {
-  params: { quoteId: string }
+  params: Promise<{ quoteId: string[] }>
 }) {
-  const quoteId = params.quoteId[0]
+  const { quoteId } = await params
+  const id = Array.isArray(quoteId) ? quoteId[0] : quoteId
 
   return (
     <>
       <NavBar />
-      <ViewPDF quoteId={quoteId} />
+      <ViewPDF quoteId={id} />
     </>
   )
 }

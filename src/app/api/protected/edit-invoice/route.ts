@@ -5,7 +5,7 @@ import { badRequestError400 } from '@/app/lib'
 import { T_InvoiceRow } from '@/types'
 import { serverError500 } from '@/app/lib/apiErrors/serverError'
 
-export const POST = async (req: NextRequest, _res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   const data = await req.json()
 
   const { totalPrice, invoiceRows } = data

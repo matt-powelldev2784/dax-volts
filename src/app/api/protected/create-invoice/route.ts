@@ -3,9 +3,7 @@ import { prisma } from '@/app/lib'
 import { badRequestError400 } from '@/app/lib'
 import { T_InvoiceRow } from '@/types'
 
-export const POST = async (req: NextRequest, _res: NextResponse) => {
-
-
+export const POST = async (req: NextRequest) => {
   const data = await req.json()
   const { clientId, totalPrice, invoiceRows } = data
 

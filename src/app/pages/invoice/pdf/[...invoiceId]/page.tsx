@@ -1,20 +1,18 @@
-import React from 'react'
 import ViewPDF from '@/app/components/invoice/components/pdf/PdfView'
 import { NavBar } from '@/app/components'
-
-
 
 export default async function InvoicePdfPage({
   params,
 }: {
-  params: { invoiceId: string }
+  params: Promise<{ invoiceId: string[] }>
 }) {
-  const invoiceId = params.invoiceId[0]
+  const { invoiceId } = await params
+  const id = Array.isArray(invoiceId) ? invoiceId[0] : invoiceId
 
   return (
     <>
       <NavBar />
-      <ViewPDF invoiceId={invoiceId} />
+      <ViewPDF invoiceId={id} />
     </>
   )
 }
