@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import AuthProvider from './AuthProvider'
 import { ReduxProvider } from '@/redux/provider/provider'
 import { Libre_Franklin } from 'next/font/google'
+import { ClerkProvider } from '@clerk/nextjs'
 
 const Libre = Libre_Franklin({
   subsets: ['latin'],
@@ -21,11 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <AuthProvider>
+      <ClerkProvider>
         <body className={`${Libre.className} min-w-[320px]`}>
           <ReduxProvider>{children}</ReduxProvider>
         </body>
-      </AuthProvider>
+      </ClerkProvider>
     </html>
   )
 }

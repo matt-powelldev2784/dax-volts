@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma, authOptions, noSessionResponse } from '@/app/lib'
-import { getServerSession } from 'next-auth'
+import { prisma } from '@/app/lib'
+
 import { badRequestError400 } from '@/app/lib'
 import { T_QuoteRow } from '@/types'
 import { serverError500 } from '@/app/lib/apiErrors/serverError'
 
 export const POST = async (req: NextRequest, _res: NextResponse) => {
-  const session = await getServerSession(authOptions)
-  if (!session) return noSessionResponse
-
   const data = await req.json()
   console.log('data', data)
 

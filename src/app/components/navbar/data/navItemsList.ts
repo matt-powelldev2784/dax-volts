@@ -43,7 +43,7 @@ export const navItemList = [
   },
   {
     key: 7,
-    href: '/api/auth/signout',
+    href: '/pages/auth/signout',
     image: 'signout.svg',
     alt: 'close door icon',
     text: 'Logout',

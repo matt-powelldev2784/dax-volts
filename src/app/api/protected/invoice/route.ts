@@ -1,16 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {
-  prisma,
-  authOptions,
-  noSessionResponse,
-  badRequestError400,
-} from '@/app/lib'
-import { getServerSession } from 'next-auth'
+import { prisma, badRequestError400 } from '@/app/lib'
+
 
 export const GET = async (req: NextRequest, _res: NextResponse) => {
-  const session = await getServerSession(authOptions)
-  if (!session) return noSessionResponse
-
   const url = new URL(req.url)
   const pageNumber = url.searchParams.get('page')
   const page = Number(pageNumber) || 1

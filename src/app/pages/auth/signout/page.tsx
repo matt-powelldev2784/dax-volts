@@ -1,12 +1,13 @@
 import { NavBar } from '@/app/components'
-import { SignOut } from '@/app/components/auth/SignOut'
+import { SignOutButton } from '@clerk/nextjs'
+
 
 export default function SignOutPage() {
   return (
     <>
       <NavBar />
       <div className="flexCol gap-4">
-        <SignOut />
+        <SignOutButton />
       </div>
     </>
   )

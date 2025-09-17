@@ -4,20 +4,14 @@ import React from 'react'
 import { PageTitle } from '@/app/ui'
 import { SignOutButton } from '@clerk/nextjs'
 
-export const NotAuth = () => {
+export const signOut = () => {
   return (
     <div className="flexCol">
       <PageTitle
-        text={'Login Error'}
+        text={'Sign Out'}
         imgPath={'/icons/error.svg'}
         divClasses="mt-4 mb-4"
       />
-      <p className="text-center m-2">
-        You are not authorised to view this page.
-      </p>
-      <p className="text-center m-2 mb-8">
-        Please contact the administrator to request access.
-      </p>
 
       <SignOutButton />
     </div>

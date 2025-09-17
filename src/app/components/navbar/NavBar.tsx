@@ -1,20 +1,15 @@
 import Image from 'next/image'
 import { NavItems } from './components/NavItems'
-import { IsLoggedIn } from '@/app/components'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { auth } from '@clerk/nextjs/server'
 
 export const NavBar = async () => {
-  const session = await getServerSession(authOptions)
-  const userImage =
-    typeof session?.user?.image === 'string' ? session?.user?.image : null
+  const { userId } = await auth()
 
   return (
     <header className="">
-      <IsLoggedIn />
       <nav
         className={`flex flex-col items-center md:justify-center lg:flex-row  h-fit w-full bg-darkBlack ${
-          session ? 'lg:justify-between' : 'lg:justify-center'
+          userId ? 'lg:justify-between' : 'lg:justify-center'
         }`}
       >
         <a
@@ -23,7 +18,7 @@ export const NavBar = async () => {
         >
           <Image
             src="/max_volts_logo.svg"
-            alt="Footboot Logo"
+            alt="Max Volts Logo"
             width={873}
             height={156}
             className=""
@@ -31,16 +26,7 @@ export const NavBar = async () => {
         </a>
 
         <div className="flexRow w-full md:w-auto lg:mr-6">
-          {session?.user?.isAdmin ? <NavItems /> : null}
-          {userImage !== null ? (
-            <Image
-              src={userImage}
-              alt="User Image"
-              width={40}
-              height={40}
-              className="clipPathCircle mr-4 lg:block hidden"
-            />
-          ) : null}
+          {userId ? <NavItems /> : null}
         </div>
       </nav>
     </header>
