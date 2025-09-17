@@ -21,7 +21,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ClerkProvider>
+      <ClerkProvider
+        signInUrl="/pages/auth/signin"
+        signUpUrl="/pages/auth/signup"
+        appearance={{
+          layout: {
+            unsafe_disableDevelopmentModeWarnings: true,
+          },
+        }}
+      >
         <body className={`${Libre.className} min-w-[320px]`}>
           <ReduxProvider>{children}</ReduxProvider>
         </body>
