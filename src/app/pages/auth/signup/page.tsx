@@ -4,7 +4,7 @@ import { SignUp } from '@clerk/nextjs'
 const SignUpPage = () => (
   <>
     <NavBar />
-    <div className="flex justify-center items-center min-h-[70vh] mt-8">
+    <div className="flex justify-center items-start mt-8 min-h-screen">
       <SignUp
         path="/pages/auth/signup"
         routing="path"
