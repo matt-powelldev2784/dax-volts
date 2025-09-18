@@ -24,6 +24,9 @@ export default function RootLayout({
       <ClerkProvider
         signInUrl="/pages/auth/signin"
         signUpUrl="/pages/auth/signup"
+        signInForceRedirectUrl="/pages/dashboard"
+        signUpForceRedirectUrl="/pages/dashboard"
+        afterSignOutUrl="/pages/auth/signin"
         appearance={{
           layout: {
             unsafe_disableDevelopmentModeWarnings: true,
