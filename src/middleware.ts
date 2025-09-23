@@ -12,7 +12,7 @@ export default clerkMiddleware(async (auth, req) => {
     const authorisedUsers = [authorisedUser1, authorisedUser2]
 
     if (!authorisedUsers.includes(userId || '')) {
-      return NextResponse.redirect(new URL('/pages/auth/signin', req.url))
+      return NextResponse.redirect(new URL('/', req.url))
     }
   }
 })
